@@ -34,7 +34,7 @@ function searchCountries() {
 
         if (resp.length === 1) {
             var singleCountry = resp[0];
-            //ul_.appendTo(countriesList);
+    
             liCountry.appendTo(countriesList)
                 .append($('<ul>')
                 .append($('<li>').text('Country / Kraj : ' + singleCountry.name))
@@ -50,15 +50,8 @@ function searchCountries() {
                 .append($('<li>').text('Capital / Stolica : ' + item.capital))
                 )
                 $('</li><br>').appendTo(countriesList)
-
             });  // koniec forEach
-            
-        }
-
-        //resp.forEach(function(item){
-        //$('<li>').text(item.name).appendTo(countriesList);
-        //}); // wypisuje znalezione kraje   
-        
+        }        
 }  // koniec showCountriesList
 
 
