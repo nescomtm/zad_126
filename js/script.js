@@ -58,6 +58,7 @@ function searchCountries() {
         //resp.forEach(function(item){
         //$('<li>').text(item.name).appendTo(countriesList);
         //}); // wypisuje znalezione kraje   
+        
 }  // koniec showCountriesList
 
 
