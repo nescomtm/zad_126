@@ -22,25 +22,43 @@ function searchCountries() {
             method: 'GET',
             success: showCountriesList
         });
-    }
+    }  // koniec searchCountries()
 
     function showCountriesList(resp) {
         countriesList.empty();
-        console.log(resp);
+       // console.log(resp);
+       // console.log(countriesList);
+        
+        var liCountry = $('<li class="country">');
+        var ul_ = $('<ul>');
 
-        var divCountry = $('<div id="country">');
+        if (resp.length === 1) {
+            var singleCountry = resp[0];
+            //ul_.appendTo(countriesList);
+            liCountry.appendTo(countriesList)
+                .append($('<ul>')
+                .append($('<li>').text('Country / Kraj : ' + singleCountry.name))
+                .append($('<li>').text('Capital / Stolica : ' + singleCountry.capital))
+                )
+        } else {
+            resp.forEach(function(item){
+                var ulCountry = $('<ul>');
 
-        resp.forEach(function(item){
-            divCountry.appendTo(countriesList)
-            .append($('<li class="showCountry">').text('Country / Kraj : ' + item.name))
-            .append($('<li>').text('Capital / Stolica : ' + item.capital))
-            .append($('<p>').text('-----------------------------------------------------------'))
-        });
+                $('<li class="country">').appendTo(countriesList)
+                .append($('<ul>')
+                .append($('<li>').text('Country / Kraj : ' + item.name))
+                .append($('<li>').text('Capital / Stolica : ' + item.capital))
+                )
+                $('</li><br>').appendTo(countriesList)
+
+            });  // koniec forEach
+            
+        }
+
+        //resp.forEach(function(item){
+        //$('<li>').text(item.name).appendTo(countriesList);
+        //}); // wypisuje znalezione kraje   
+}  // koniec showCountriesList
 
 
-       // resp.forEach(function(item){
-   	 //   $('<li>').text(item.name).appendTo(countriesList);
-      //  }); // wypisuje znalezione kraje 
-}
-
-
+ 
