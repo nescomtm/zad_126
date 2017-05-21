@@ -1,12 +1,3 @@
-//[{"name":"Poland","topLevelDomain":[".pl"],"alpha2Code":"PL","alpha3Code":"POL","callingCodes":["48"],
-//"capital":"Warsaw","altSpellings":["PL","Republic of Poland","Rzeczpospolita Polska"],
-//"relevance":"1.25","region":"Europe","subregion":"Eastern Europe","population":38484000,
-//"latlng":[52.0,20.0],"demonym":"Polish","area":312679.0,"gini":34.1,"timezones":["UTC+01:00"],
-//"borders":["BLR","CZE","DEU","LTU","RUS","SVK","UKR"],"nativeName":"Polska","numericCode":"616",
-//"currencies":["PLN"],"languages":["pl"],"translations":{"de":"Polen","es":"Polonia",
-//"fr":"Pologne","ja":"ポーランド","it":"Polonia"}}]
-
-
 var url = 'https://restcountries.eu/rest/v1/name/';
 var countriesList = $('#countries');
 
@@ -24,35 +15,34 @@ function searchCountries() {
         });
     }  // koniec searchCountries()
 
-    function showCountriesList(resp) {
-        countriesList.empty();
-       // console.log(resp);
-       // console.log(countriesList);
-        
-        var liCountry = $('<li class="country">');
-        var ul_ = $('<ul>');
-
-        if (resp.length === 1) {
-            var singleCountry = resp[0];
+function showCountriesList(resp) {
+    countriesList.empty();
     
-            liCountry.appendTo(countriesList)
-                .append($('<ul>')
-                .append($('<li>').text('Country / Kraj : ' + singleCountry.name))
-                .append($('<li>').text('Capital / Stolica : ' + singleCountry.capital))
-                )
-        } else {
-            resp.forEach(function(item){
-                var ulCountry = $('<ul>');
+    var liCountry = $('<li class="country">');
 
-                $('<li class="country">').appendTo(countriesList)
-                .append($('<ul>')
-                .append($('<li>').text('Country / Kraj : ' + item.name))
-                .append($('<li>').text('Capital / Stolica : ' + item.capital))
-                )
-                $('</li><br>').appendTo(countriesList)
-            });  // koniec forEach
-        }        
+    resp.forEach(function(item){
+        var ulCountry = $('<ul>');
+        var smallApha2code = item.alpha2Code.toLowerCase();
+        var img_url = '<img src="http://flags.fmcdn.net/data/flags/w580/' + smallApha2code + '.png" alt="Flag: ' + item.name + '">';
+
+        $('<li class="country">').appendTo(countriesList)
+        .append($('<ul>')
+        .append($('<li>').text('Country / Kraj : ' + item.name))
+        .append($('<li>').text('Capital / Stolica : ' + item.capital))
+        .append($('<li>').text('Aplha 2 Code / Kod Kraju 2zn : ' + item.alpha2Code))
+        .append($('<li>' + img_url))
+        )
+        $('</li>').appendTo(countriesList)
+    });  // koniec forEach    
+
 }  // koniec showCountriesList
 
+//[{"name":"Poland","topLevelDomain":[".pl"],"alpha2Code":"PL","alpha3Code":"POL","callingCodes":["48"],
+//"capital":"Warsaw","altSpellings":["PL","Republic of Poland","Rzeczpospolita Polska"],
+//"relevance":"1.25","region":"Europe","subregion":"Eastern Europe","population":38484000,
+//"latlng":[52.0,20.0],"demonym":"Polish","area":312679.0,"gini":34.1,"timezones":["UTC+01:00"],
+//"borders":["BLR","CZE","DEU","LTU","RUS","SVK","UKR"],"nativeName":"Polska","numericCode":"616",
+//"currencies":["PLN"],"languages":["pl"],"translations":{"de":"Polen","es":"Polonia",
+//"fr":"Pologne","ja":"ポーランド","it":"Polonia"}}]
 
  
